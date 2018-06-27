@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>bloggyEll Blog</title>
+</head>
+<body>
+
+<div style="text-align: center">
+    <div id="post" th:each="post : ${posts}" style="background-color: orange">
+        <a th:href="${'/post/' + post.getId()}">
+            <h1 style="text-align: center; color: white" th:text="${post.getTitle()}"></h1>
+        </a>
+        <br/>
+        <strong style="text-align: left" th:text="${post.getAuthor()}"></strong>
+        <small th:text="${#temporals.format(post.getDate(), 'dd-MM-yyyy HH:mm')}"></small>
+        <hr/>
+    </div>
+
+    <a href="/add/post"> Add new post </a>
+</div>
+
+</body>
+</html>

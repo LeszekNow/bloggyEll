@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add post</title>
+</head>
+<body>
+
+<div style="text-align: center">
+    <form action="/add/post" method="post" th:object="${postForm}">
+        <input type="text" th:field="*{title}" placeholder="title">
+        <br/>
+        <textarea th:field="*{article}" placeholder="content"></textarea>
+        <br/>
+        <input type="text" th:field="*{author}" placeholder="author or nickname">
+        <br/>
+        <select th:field="*{category}">
+            <option th:each="value : ${categories}" th:name="${value.getId()}" th:value="${value.getId()}"
+                    th:text="${value.getName()}"></option>
+        </select>
+        <br/>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+</body>
+</html>

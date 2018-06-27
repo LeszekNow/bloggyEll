@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${post.getTitle()}"></title>
+</head>
+<body>
+
+<div style="text-align: center">
+    <h1 style="border: 3px dot-dash;" th:text="${post.getTitle()}"></h1>
+    <div>
+        <span th:text="${post.getArticle()}"></span>
+    </div>
+    <strong th:text="${'By ' + post.getAuthor() + ' (' + post.getCategory().getName() + ')'}"></strong>
+
+    <br/><br/><br/>
+
+    Add comment:
+    <form th:action="${'/comment/' + post.getId()}" method="post">
+        <input type="text" name="comment" placeholder="Comment">
+        <input type="text" name="author" placeholder="Your nick"> <br/>
+        <input type="submit" value="Submit">
+    </form>
+
+    <br/>
+
+    <div style="border: 1px black solid">
+        <div th:each="comment : ${post.getComments()}">
+            <h4 th:text="${comment.getAuthor()}"></h4>
+            <p th:text="${comment.getContent()}"></p>
+            <hr/>
+        </div>
+    </div>
+
+    <br/>
+
+    <a href="/"> Back </a>
+</div>
+
+</body>
+</html>
