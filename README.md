@@ -1,1 +1,3 @@
 # bloggyEll
+Web service simulating Blog/Forum. Gaining experience in Spring and MVC.
+Technologies used: Spring boot, Maven, Hibernate, mySQL, Lombok, Thymeleaf, HTML5, CSS...
