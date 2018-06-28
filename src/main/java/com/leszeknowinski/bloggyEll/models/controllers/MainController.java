@@ -59,7 +59,7 @@ public class MainController {
 
     @GetMapping("/add/post")
     public String addPost(Model model){
-        model.addAttribute("postFrom", new PostForm());
+        model.addAttribute("postForm", new PostForm());
         model.addAttribute("categories", categoryService.getCategories());
         return "addPost";
     }
