@@ -1,3 +1,5 @@
 # bloggyEll
-Web service simulating Blog/Forum. Gaining experience in Spring and MVC.
-Technologies used: Spring boot, Maven, Hibernate, mySQL, Lombok, Thymeleaf, HTML5, CSS...
+
+Simple web application simulating Forum/Blog - My 2nd Spring Boot training project
+
+Technologies used: Spring boot, Java 8, Maven, Hibernate, JPA, mySQL, Lombok, Thymeleaf, HTML5
