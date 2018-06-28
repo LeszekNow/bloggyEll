@@ -21,6 +21,8 @@ public class PostEntity {
     private String article;
     private String author;
     private LocalDateTime date;
+    @Column(name = "sender_ip")
+    private String userIp;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //parameter determines how content from server is downloaded - lazy - partially, eager - allAtOnce
     @JoinColumn(name = "category_id")
     private CategoryEntity category;

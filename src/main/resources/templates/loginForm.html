@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Login panel</title>
+</head>
+<body>
+
+<div style="text-align: center; border: dot-dot-dash black; background-color: blue; font-family: -apple-system">
+    <form action="/login" method="post" th:object="${userRegistrationAndLoginForm}">
+        <h1 th:text="${info}"></h1>
+        <input type="text" th:field="*{login}" placeholder="login">
+        <br/>
+        <input type="password" th:field="*{password}" placeholder="password">
+        <br/>
+        <input type="submit" value="Login">
+    </form>
+</div>
+
+</body>
+</html>

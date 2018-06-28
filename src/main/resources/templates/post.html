@@ -24,7 +24,7 @@
 
     <br/>
 
-    <div style="border: 1px black solid">
+    <div style="border: 2px black solid">
         <div th:each="comment : ${post.getComments()}">
             <h4 th:text="${comment.getAuthor()}"></h4>
             <p th:text="${comment.getContent()}"></p>
