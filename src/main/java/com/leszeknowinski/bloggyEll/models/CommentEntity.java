@@ -20,9 +20,14 @@ public class CommentEntity {
     private String content;
     private String author;
     private LocalDateTime date;
+    @Column(name = "author_id")
+    private int authorId;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "post_id")
     private PostEntity post;
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "author_id")
+//    private UserEntity user;
 
     @Override
     public String toString() {

@@ -8,7 +8,6 @@ import com.leszeknowinski.bloggyEll.models.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.Optional;
@@ -21,18 +20,20 @@ public class PostService {
 
     @Autowired
     CategoryRepository categoryRepository;
+
     //@Async it speed up site response, not guarantee do all job before response
     @Transactional // method will do all or nothing
-    public void addPost(PostForm postForm, String userIp){
+    public void addPost(PostForm postForm, String author, String userIp, int authorId){
         Optional<CategoryEntity>category = categoryRepository.findById(postForm.getCategory());
 
         PostEntity newPost = new PostEntity();
         newPost.setCategory(category.orElseThrow(IllegalStateException::new));
-        newPost.setAuthor(postForm.getAuthor());
+        newPost.setAuthor(author);
         newPost.setTitle(postForm.getTitle());
         newPost.setArticle(postForm.getArticle());
         newPost.setComments(Collections.emptyList());
         newPost.setUserIp(userIp);
+        newPost.setAuthorId(authorId);
         postRepository.save(newPost);
     }
 

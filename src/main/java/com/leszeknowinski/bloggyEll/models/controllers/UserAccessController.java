@@ -28,8 +28,9 @@ public class UserAccessController {
             model.addAttribute("infoTwo", "This login is arrested!");
             return "loginAndRegistrationForm";
         }
-        userService.register(userRegistrationAndLoginForm);
-        return "redirect:/";
+            userService.register(userRegistrationAndLoginForm);
+            model.addAttribute("infoThree", "Success! You can  now!");
+            return "redirect:/";
     }
 
     @GetMapping("/login")

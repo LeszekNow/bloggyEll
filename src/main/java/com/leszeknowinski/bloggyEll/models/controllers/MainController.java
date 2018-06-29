@@ -1,5 +1,7 @@
 package com.leszeknowinski.bloggyEll.models.controllers;
 
+import com.leszeknowinski.bloggyEll.models.CommentEntity;
+import com.leszeknowinski.bloggyEll.models.PostEntity;
 import com.leszeknowinski.bloggyEll.models.forms.PostForm;
 import com.leszeknowinski.bloggyEll.models.services.CategoryService;
 import com.leszeknowinski.bloggyEll.models.services.CommentService;
@@ -11,7 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+//@OneToOne @ManyToMany @Async @EnableAsync
 
+//system oceniania postów
+//dodawanie kategorii
 @Controller
 public class MainController {
 
@@ -49,24 +56,34 @@ public class MainController {
     }
 
     @PostMapping("/comment/{postId}")
-    public String addComment(@RequestParam("author") String author,
-                             @RequestParam("comment") String comment,
+    public String addComment(@RequestParam("comment") String comment,
                              @PathVariable("postId") int postId){
-        commentService.addComment(author, comment, postId);
+        commentService.addComment(userService.getUserData().getLogin(), comment, postId, userService.getUserData().getId());
         return "redirect:/post/" + postId;
 
+    }
+
+    @PostMapping("/search/post")
+    public String searchPost(@RequestParam("search") String search, Model model){
+        List<PostEntity> allPostsList = new ArrayList<>();
+        allPostsList.addAll(postService.getPostRepository().findByArticleContains(search));
+        allPostsList.addAll(postService.getPostRepository().findByAuthorContains(search));
+        allPostsList.addAll(postService.getPostRepository().findByTitleContains(search));
+        model.addAttribute("posts", allPostsList);
+        return "index";
     }
 
     @GetMapping("/add/post")
     public String addPost(Model model){
         model.addAttribute("postForm", new PostForm());
         model.addAttribute("categories", categoryService.getCategories());
+        model.addAttribute("userData", userService.getUserData());
         return "addPost";
     }
 
     @PostMapping("/add/post")
     public String addPost(@ModelAttribute PostForm postForm, HttpServletRequest httpServletRequest){
-        postService.addPost(postForm, httpServletRequest.getRemoteHost());
+        postService.addPost(postForm, userService.getUserData().getLogin(), httpServletRequest.getRemoteHost(), userService.getUserData().getId());
         return "redirect:/";
     }
 }

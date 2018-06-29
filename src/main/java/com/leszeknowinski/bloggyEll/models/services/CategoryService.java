@@ -16,4 +16,10 @@ public class CategoryService {
     public List<CategoryEntity>getCategories(){
        return categoryRepository.findAll();
     }
+
+    public void addCategory(String category){
+        CategoryEntity categoryEntity = new CategoryEntity();
+        categoryEntity.setName(category);
+        categoryRepository.save(categoryEntity);
+    }
 }

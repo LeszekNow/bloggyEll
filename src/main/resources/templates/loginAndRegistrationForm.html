@@ -23,6 +23,7 @@
     <h1>Registration panel:</h1>
     <form action="/register" method="post" th:object="${userRegistrationAndLoginForm}" style="background-color: orange">
         <h1 th:text="${infoTwo}"></h1>
+        <h1 th:text="${infoThree}"></h1>
         <input type="text" th:field="*{login}" placeholder="login">
         <br/>
         <input type="password" th:field="*{password}" placeholder="password">

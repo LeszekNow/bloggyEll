@@ -6,8 +6,8 @@ import lombok.Data;
 public class PostForm {
     private String title;
     private String article;
-    private String author;
     private int category;
+    private int authorId;
 }
 
 
